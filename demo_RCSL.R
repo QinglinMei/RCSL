@@ -1,8 +1,9 @@
 
+library(RCSL)
+
 library(SingleCellExperiment)
 library(ggplot2)
-
-library(RCSL)
+library(igraph)
 
 ## Load dataset 
 # For example, the input data is "Goolam.rds", but it could also be "Goolam.txt"
