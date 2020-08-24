@@ -37,7 +37,7 @@ Function | Description
 ## Required annotations for RCSL
 
 1) The RCSL package requires three extra packages: namely the *SingleCellExperiment* package (see https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html) to read the *SingleCellExperiment* object, the *igraph* package (see https://igraph.org/) to find the stronggest connected components and the *ggplot2* package (see https://cran.r-project.org/web/packages/ggplot2/index.html) to plot the developmental trajectory and MST.
-2) The five example datasets for demonstration purpose in the directory *Data* were from https://hemberg-lab.github.io/scRNA.seq.datasets/. These datasets are quality controlled by scater criterion and stored in SingleCellExperiment Bioconductor S4 classes.
+2) The five datasets for demonstration purpose in the directory *Data* were from https://hemberg-lab.github.io/scRNA.seq.datasets/. These datasets are stored in SingleCellExperiment Bioconductor S4 classes.
 
 
 ## DEBUG
