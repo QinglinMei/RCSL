@@ -6,14 +6,12 @@ library(ggplot2)
 
 
 ## Load dataset 
-# For example, the input data "Goolam.rds"
+# For example, the input data is "Goolam.rds", but it could also be "Goolam.txt"
 
 origData <- readRDS("./Data/Goolam.rds")
 data <- logcounts(origData)
 label <- origData$cell_type1
 DataName <- "Goolam"
-
-# In this example, the input data is could be also "Goolam.txt"
 
 ## Run RCSL
 # RCSL in Detail
