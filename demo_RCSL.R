@@ -1,9 +1,8 @@
 
-setwd("./RCSL/Data")
-
 library(SingleCellExperiment)
 library(ggplot2)
 
+library(RCSL)
 
 ## Load dataset 
 # For example, the input data is "Goolam.rds", but it could also be "Goolam.txt"
@@ -17,8 +16,6 @@ DataName <- "Goolam"
 # RCSL in Detail
 # The main `RCSL` method is a wrapper that calls other `RCSL` functions in the following order:
 # GenesFilter(); SimS(); EstClusters(); BDSM()
-
-library(RCSL)
 
 res_RCSL <- RCSL(data, GF = TRUE, gfRatio = 0.025, pcRatio = 0.95, largeThre = 2000)
 
