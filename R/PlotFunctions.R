@@ -47,7 +47,7 @@
   for(i in 1:max(clustRes)){
      reducedData.centers[i,] = colMeans(reducedData[which(clustRes == i),])
   }
-  gg <- BETS::get.data.frame(g_mst)
+  gg <- get.data.frame(g_mst)
   df_centers <- as.data.frame(reducedData.centers)
   df_centers$vertices <- c(1:nrow(reducedData.centers))
   gg$from.x <- df_centers$V1[match(gg$from, df_centers$vertices)]
