@@ -8,13 +8,13 @@ $ R
 > library("devtools")
 > devtools::install_github("QinglinMei/RCSL")
 ```
-Now *RCSL* can be loaded into R:
+Now *RCSL* can be loaded in R:
 ```{r}
 > library(RCSL)
 ```
 ## Input
 
-The input of RCSL is expected that the preprocessing steps like sequencing quality control (QC) or normalisation are performed by a user in advance. Then, the input is assumed to be an log(CPM+1) (or log(RPKM+1), log(TPM+1), log(FPKM+1)) matrix with columns correspond to cells and genes correspond to genes. 
+The input to *RCSL* is a normalized matrix. Then, the input is assumed to be an log(CPM+1) (or log(RPKM+1), log(TPM+1), log(FPKM+1)) matrix with columns correspond to cells and genes correspond to genes. 
 
 ## Usage
 
