@@ -20,7 +20,7 @@ The input to RCSL is a normalized data matrix with columns being cells and rows 
 
 We provide an example script to run RCSL in *demo_RCSL.R*. 
 
-There are also nine functions available in RCSL serving as sub-commands.
+There are also nine functions of RCSL can be run independently.
 
 Subcommand | Description
 -----------|----------
