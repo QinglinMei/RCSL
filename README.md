@@ -22,7 +22,7 @@ We provide an example script to run RCSL in *demo_RCSL.R*.
 
 The nine functions of RCSL can be run independently.
 
-Subcommand | Description
+Function | Description
 -----------|----------
 `GenesFilter` | Perform genes filtering.
 `SimS` | Calculate the initial similarity matrix S.
