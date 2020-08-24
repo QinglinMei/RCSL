@@ -14,7 +14,7 @@ Now *RCSL* can be loaded in R:
 ```
 ## Input
 
-The input to *RCSL* is a normalized matrix. Then, the input is assumed to be an log(CPM+1) (or log(RPKM+1), log(TPM+1), log(FPKM+1)) matrix with columns correspond to cells and genes correspond to genes. 
+The input to *RCSL* is a normalized data matrix. Then, the input is assumed to be an log(CPM+1) (or log(RPKM+1), log(TPM+1), log(FPKM+1)) matrix with columns correspond to cells and genes correspond to genes. 
 
 ## Usage
 
