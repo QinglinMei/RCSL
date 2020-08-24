@@ -8,7 +8,7 @@ $ R
 > library("devtools")
 > devtools::install_github("QinglinMei/RCSL")
 ```
-Now we can load RCSL:
+Now *RCSL* can be loaded into R:
 ```{r}
 > library(RCSL)
 ```
