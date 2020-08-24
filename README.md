@@ -1,5 +1,5 @@
 # Rank Constrained Similarity Learning (RCSL)
-RCSL is an R toolkit for single cell clustering and trajectory analysis using single cell RNA-seq data.
+RCSL is an R toolkit for single-cell clustering and trajectory analysis using single-cell RNA-seq data.
 
 ## Installation
 This package can be insatlled through devtools in R:
