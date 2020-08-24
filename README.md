@@ -8,19 +8,19 @@ $ R
 > library("devtools")
 > devtools::install_github("QinglinMei/RCSL")
 ```
-Now *RCSL* can be loaded in R:
+Now RCSL can be loaded in R:
 ```{r}
 > library(RCSL)
 ```
 ## Input
 
-The input to *RCSL* is a normalized data matrix with columns being cells and rows being genes in log(CPM+1), log(RPKM+1), log(TPM+1) or log(FPKM+1) format. 
+The input to RCSL is a normalized data matrix with columns being cells and rows being genes in log(CPM+1), log(RPKM+1), log(TPM+1) or log(FPKM+1) format. 
 
 ## Usage
 
-We provide an example script to run *RCSL* in *demo_RCSL.R*. 
+We provide an example script to run RCSL in *demo_RCSL.R*. 
 
-There are also nine functions available in *RCSL* serving as sub-commands.
+There are also nine functions available in RCSL serving as sub-commands.
 
 Subcommand | Description
 -----------|----------
