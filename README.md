@@ -18,7 +18,7 @@ The input to *RCSL* is a normalized data matrix with columns being cells and row
 
 ## Usage
 
-We provide an *R* demo code to run *RCSL* in the script *demo_RCSL.R*. 
+We provide an example script to run *RCSL* in *demo_RCSL.R*. 
 
 There are also nine functions available in *RCSL* serving as sub-commands.
 
