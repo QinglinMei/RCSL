@@ -48,7 +48,6 @@ In practice, we find it always beneficial to pre-process single-cell RNA-seq dat
 1. Log transformation.
 2. Gene filter
 
-The following line performs these steps:
 ```{r, cache=TRUE}
 data <- logcounts(origData)
 gfData <- GenesFilter(data)
