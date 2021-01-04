@@ -1,0 +1,98 @@
+---
+  title: "A quick tour of RCSL"
+author: "Qinglin Mei"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RCSL-vignette}
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteEncoding{UTF-8}
+---
+  
+  ```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+RCSL is an R toolkit for single-cell clustering and trajectory analysis using single-cell RNA-seq data.
+
+# Installation
+### Install RCSL package and other requirements
+'RCSL' can be installed directly from GitHub with 'devtools'.
+
+```{r, eval=FALSE}
+library(devtools)
+devtools::install_github("QinglinMei/RCSL")
+```
+
+Now we can load `RCSL`. We also load the `SingleCellExperiment`, `ggplot2` and `igraph`  package.
+```{r, results="hide"}
+library(RCSL)
+library(SingleCellExperiment)
+library(ggplot2)
+library(igraph)
+```
+
+# Run RCSL
+## Load dataset (Goolam)
+We illustrate the usage of RCSL on a Mouse Embryo Development dataset (*Mubeen et al., (2016)*). The Goolam data is distributed together with the RCSL package, with 124 cells and 41,480 genes:
+  ```{r}
+origData <- readRDS("./Data/Goolam.rds")
+```
+
+## 1. Pre-processing
+In practice, we find it always beneficial to pre-process single-cell RNA-seq dataset, including:
+  1. Log transformation.
+2. Gene filter
+
+The following line performs these steps:
+  ```{r, cache=TRUE}
+data <- logcounts(origData)
+gfData <- GenesFilter(data)
+```
+
+## 2. Calculate the initial similarity matrix S
+```{r, cache=TRUE}
+resSimS <- SimS(gfData)
+```
+
+## 3. Estimate the number of clusters C
+```{r, cache=TRUE}
+Estimated_C <- EstClusters(resSimS$drData,resSimS$S)
+```
+
+## 4. Calculate the block diagonal matrix B
+```{r, cache=TRUE}
+res_RCSL <- BDSM(resSimS$S, Estimated_C)
+```
+
+# Calculate accuracy of the clustering
+```{r, cache=TRUE}
+ARI_RCSL <- igraph::compare(res_RCSL$y, label, method = "adjusted.rand")
+```
+
+# Trajectory analysis to time-series datasets
+```{r, cache=TRUE}
+label <- origData$cell_type1
+res_TrajecAnalysis <- TrajectoryAnalysis(res_RCSL$gfData, res_RCSL$drData, res_RCSL$S,
+                                         clustRes = res_RCSL$y, TrueLabel = label, startPoint = 1,
+                                         dataName = DataName)
+```										 
+
+# Display the constructed MST 
+```{r, cache=TRUE}
+res_TrajecAnalysis$MSTPlot
+```										 
+
+# Display the plot of the pseudo-temporal ordering 
+```{r, cache=TRUE}
+res_TrajecAnalysis$PseudoTimePlot
+```	
+
+# Display the plot of the inferred developmental trajectory
+```{r, cache=TRUE}
+res_TrajecAnalysis$TrajectoryPlot
+```	
