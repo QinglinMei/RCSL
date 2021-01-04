@@ -77,7 +77,7 @@ Display the plot of the inferred developmental trajectory
 ```{r}
 > res_TrajecAnalysis$TrajectoryPlot
 ```
-A vignette is available [here](https://github.com/QinglinMei/RCSL/blob/master/vignettes/RCSL-vignette.Rmd)
+A vignette in R Notebook format is available [here](https://github.com/QinglinMei/RCSL/blob/master/vignettes/RCSL-vignette.Rmd)
 
 ## Required annotations for RCSL
 
