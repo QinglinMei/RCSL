@@ -34,6 +34,32 @@ Function | Description
 `getLineage` | Infer the lineage based on the clustering results and the starting cell.
 `PlotTrajectory` | Plot the developmental trajectory based on the clustering results and the starting cell.
 
+## Example:
+
+Load packages:
+```{r}
+> library(RCSL)
+> library(SingleCellExperiment)
+> library(ggplot2)
+> library(igraph)
+```
+Load Goolam dataset:
+```{r}
+> origData <- readRDS("./Data/Goolam.rds")
+> data <- logcounts(origData)
+> label <- origData$cell_type1
+> DataName <- "Goolam"
+```
+Generating clustering result:
+```{r}
+> result_RCSL <- RCSL(data)
+```
+Calculating adjusted Rand Index:
+```{r}
+> ARI_RCSL <- igraph::compare(res_RCSL$y, label, method = "adjusted.rand")
+```
+A vignette is available [here](https://github.com/QinglinMei/RCSL/blob/master/vignettes/RCSL-vignette.Rmd)
+
 ## Required annotations for RCSL
 
 1) The RCSL package requires three extra packages: namely the *SingleCellExperiment* package (see https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html) to read the *SingleCellExperiment* object, the *igraph* package (see https://igraph.org/) to find the stronggest connected components and the *ggplot2* package (see https://cran.r-project.org/web/packages/ggplot2/index.html) to plot the developmental trajectory and MST.
