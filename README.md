@@ -52,11 +52,30 @@ Load Goolam dataset:
 ```
 Generating clustering result:
 ```{r}
-> result_RCSL <- RCSL(data)
+> res_RCSL <- RCSL(data)
 ```
-Calculating adjusted Rand Index:
+Calculating Adjusted Rand Index:
 ```{r}
 > ARI_RCSL <- igraph::compare(res_RCSL$y, label, method = "adjusted.rand")
+```
+Trajectory analysis:
+```{r}
+> label <- origData$cell_type1
+> res_TrajecAnalysis <- TrajectoryAnalysis(res_RCSL$gfData, res_RCSL$drData, res_RCSL$S,
+                                         clustRes = res_RCSL$y, TrueLabel = label, startPoint = 1,
+                                         dataName = DataName)
+```
+Display the plot of constructed MST: 
+```{r}
+> res_TrajecAnalysis$MSTPlot
+```
+Display the plot of the pseudo-temporal ordering 
+```{r}
+> res_TrajecAnalysis$PseudoTimePlot
+```
+Display the plot of the inferred developmental trajectory
+```{r}
+> res_TrajecAnalysis$TrajectoryPlot
 ```
 A vignette is available [here](https://github.com/QinglinMei/RCSL/blob/master/vignettes/RCSL-vignette.Rmd)
 
