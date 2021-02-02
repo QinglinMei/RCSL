@@ -15,14 +15,14 @@
   ExpressNumMax <- (1 - gfRatio) * N
   
   GenesExpress0 <- sapply(1:G, function(n) length(which(data[n,] != 0)))
-  data <- data[which(GenesExpress0 > ExpressNumMin),,drop = F]
+  gfData <- data[which(GenesExpress0 > ExpressNumMin),,drop = F]
   GenesExpress <- GenesExpress0[which(GenesExpress0 > ExpressNumMin)]
   
   if(max(GenesExpress) == N){
-   GenesPre <- data[which(GenesExpress > ExpressNumMax),,drop = F]
+   GenesPre <- gfData[which(GenesExpress > ExpressNumMax),,drop = F]
    GenesVar <- as.matrix(apply(GenesPre, 1, var))
    if(any(GenesVar < 0.9 * mean(GenesVar))){
-   gfData <- data[-which(GenesVar < 0.9 * mean(GenesVar)),,drop = F]
+   gfData <- gfData[-which(GenesVar < 0.9 * mean(GenesVar)),,drop = F]
    }
    
   }
@@ -41,53 +41,106 @@
 #' @return S initial similarity matrix 
 #' @return drData gene expression matrix after PCA processing
 #' @export
-"SimS" <- function(data, pcRatio = 0.95, largeThre = 2000, neiRatio = 0.65){
+"SimS" <- function(data, pcRatio = 0.95, gamma = 0.8, largeThre = 2000, NN.method = "LSH", 
+                   Dis.method = "Euclidean", LSH.TreeNum = 30, LSH.Dim = 1000, 
+                   LSH.Dis = "angular", neiRatio = 0.65){
 
   res_PCA <- stats::prcomp(t(data), center = TRUE, scale. = TRUE)
-
+  
   if(ncol(data) > 1300){
     EigenValues <- res_PCA$sdev
     V <- sapply(1:length(EigenValues), function(n) sum(EigenValues[1:n])/sum(EigenValues))
     n_dim <- min(which(V >= pcRatio))
     res_pca <- t(res_PCA$x[, 1:n_dim, drop = F])
+    if(n_dim>4000){
+    res_pca <- t(res_PCA$x[, 1:4000, drop = F])
+    }
   }else{
     res_pca <- t(res_PCA$x) 
   }
-
-  if(ncol(data) < 2000){
-    SpearA <- stats::cor(data, method = "spearman")
-    NR <- NeigRepresent(res_pca, neiRatio)
-    S <-  0.8 * SpearA + 0.2 * NR
-  }else{
-    PearA <- stats::cor(data, method = "pearson")
-    S <- stats::cor(PearA, method = "spearman")
-  }
   
+  if(gamma!=1){      
+       cat('Calculate the Spearman correlation','\n')
+       SpearA <- stats::cor(data, method = "spearman")
+       cat('Calculate the Nerighbor Representation','\n')
+       NR <- NeigRepresent(res_pca, NN.method = NN.method, Dis.method = Dis.method, 
+                        LSH.TreeNum = LSH.TreeNum, LSH.Dim = LSH.Dim, LSH.Dis = LSH.Dis, 
+                        neiRatio = neiRatio)
+       S <-  gamma * SpearA + (1-gamma) * NR
+  } else{
+    cat('Calculate the Spearman correlation','\n')
+    S <- stats::cor(data, method = "spearman")
+  }
+
   res = list("S" = S, "drData" = res_pca)
   return(res)
 }
 
 #'
 #' Calculate the neighbor representation of cells 
+#' 
+#' @import Rcppannoy
 #'
 #' @param drData gene expression matrix after dimensionality reduced by PCA
 #' @param neiRatio ratio of the number of selected neighbors to the total number of cells
 #'
 #' @return NR the similarity matrix measured by neighbor representation 
 #' @export
-"NeigRepresent" <- function(drData, neiRatio = 0.65){
+"NeigRepresent" <- function(drData, NN.method = "KNN", Dis.method = "Euclidean", 
+                            LSH.TreeNum = 30, LSH.Dim = 500, LSH.Dis = "angular", 
+                            neiRatio = 0.65){
 
 k <- ceiling(ncol(drData) * neiRatio)
 
-distMatrix <- as.matrix(stats::dist(t(drData), diag = T, upper = T))
+if(NN.method == "KNN"){
+  if(Dis.method == "Euclidean"){
+      cat("Find neighbors by KNN(Euclidean)","\n")
+      #distMatrix <- as.matrix(stats::dist(t(drData), diag = T, upper = T))
+      distMatrix <- EucDist(drData,drData)
+  } 
+  if(Dis.method == "Cosine"){
+      cat("Find neighbors by KNN(Cosine)","\n")
+      Cosine_sim <- t(drData) / sqrt(rowSums(t(drData) * t(drData)))
+      Cosine_sim <- Cosine_sim %*% t(Cosine_sim)
+      distMatrix <- as.matrix(1 - Cosine_sim)
+  }
+  neigData <- sapply(1:nrow(distMatrix), function(n){
+                     curRow <- sort(distMatrix[n,,drop = T])
+                     rownames(as.matrix(which(rank(curRow, ties.method = "first") <= k)))})
+}
 
-neigData <- sapply(1:nrow(distMatrix), function(n){
-                   curRow <- sort(distMatrix[n,,drop = T])
-                   rownames(as.matrix(which(rank(curRow, ties.method = "first") <= k)))})
+if(NN.method == "LSH"){
+  if(nrow(drData)>LSH.Dim){
+    drData <- drData[1:LSH.Dim,,drop = F]
+  }
+  f = ncol(drData)
+  if(LSH.Dis == "angular"){  
+      cat("Find neighbors by LSH(Cosine)","\n")
+      Tree = methods::new(RcppAnnoy::AnnoyAngular,f)  
+  }
+  if(LSH.Dis == "hamming"){ 
+      cat("Find neighbors by LSH(Hamming)","\n") 
+      Tree = methods::new(RcppAnnoy::AnnoyHamming,f)  
+  }
+  if(LSH.Dis == "Euclidean"){ 
+      cat("Find neighbors by LSH(Euclidean)","\n") 
+      Tree = methods::new(RcppAnnoy::AnnoyEuclidean,f)  
+  }
+  for(i in seq(ncol(drData))){
+      v = as.vector(drData[,i])
+      Tree$addItem(i, v)
+  }
+  Tree$build(LSH.TreeNum)# 30 trees
+  INDEX = mat.or.vec(ncol(drData),k+1)
+  for(i in seq(ncol(drData))){
+      v = drData[,i]
+      INDEX[i,] = Tree$getNNsByVector(v, k+1)
+  }
+  neigData <- t(INDEX)[-1,]
+}
 
-neigData <- neigData[-1,]
-
-colnames(neigData) <- row.names(distMatrix)
+neigData <- neigData[-1,] 
+colnames(neigData) <- colnames(drData)
 
 ## Solve for reconstruction weights
 ## Create matrix Z consisting of all neighbors of each cell
@@ -121,6 +174,7 @@ for(i in (1:ncol(neigData))){
  
  return(NR)
 }
+
 
 #'
 #' Estimate the optimal number of clusters C for clustering
