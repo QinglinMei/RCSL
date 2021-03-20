@@ -63,7 +63,7 @@
        cat('Calculate the Spearman correlation','\n')
        SpearA <- stats::cor(data, method = "spearman")
        cat('Calculate the Nerighbor Representation','\n')
-       NR <- NeigRepresent(res_pca, NN.method, Dis.method, 
+       NR <- NeigRepresent(res_pca,NN.method = "KNN", Dis.method = "Euclidean",
                         LSH.TreeNum = LSH.TreeNum, LSH.Dim = LSH.Dim, LSH.Dis = LSH.Dis, 
                         neiRatio = neiRatio)
        S <-  gamma * SpearA + (1-gamma) * NR
