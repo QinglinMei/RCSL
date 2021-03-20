@@ -15,7 +15,7 @@
 #'
 
 RCSL <- function(data, GF = TRUE, gfRatio = 0.025, pcRatio = 0.95, largeThre = 2000,
-                 neiRatio = 0.65){
+                 NN.method = "KNN", Dis.method = "Euclidean", neiRatio = 0.65){
 
 # Gene filter
 if(GF == TRUE){
@@ -25,7 +25,7 @@ gfData <- data[rowSums(data)!=0,,drop=F]
 }
 
 # Calculate the similarity matrix S
-resSimS <- SimS(gfData, pcRatio, largeThre)
+resSimS <- SimS(gfData, pcRatio, largeThre, NN.method, Dis.method)
 
 # Estimate the number of clusters C
 Estimated_C <- EstClusters(resSimS$drData,resSimS$S)
