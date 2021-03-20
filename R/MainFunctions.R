@@ -41,7 +41,7 @@
 #' @return S initial similarity matrix 
 #' @return drData gene expression matrix after PCA processing
 #' @export
-"SimS" <- function(data, pcRatio = 0.95, gamma = 0.8, largeThre = 2000, NN.method = "LSH", 
+"SimS" <- function(data, pcRatio = 0.95, gamma = 0.8, largeThre = 2000, NN.method = "KNN", 
                    Dis.method = "Euclidean", LSH.TreeNum = 30, LSH.Dim = 1000, 
                    LSH.Dis = "angular", neiRatio = 0.65){
 
