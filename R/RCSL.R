@@ -37,7 +37,7 @@ B <- res_BDSM$B
 y <- res_BDSM$y
 
 res <- list("gfData" = gfData, "drData" = resSimS$drData,
-            "S" = resSimS$S, "B" = B, "C" = C, "y" = y)
+            "S" = resSimS$S, "B" = B, "C" = Estimated_C$C, "y" = y)
 return(res)
 }
 
