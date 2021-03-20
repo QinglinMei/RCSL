@@ -25,7 +25,7 @@ gfData <- data[rowSums(data)!=0,,drop=F]
 }
 
 # Calculate the similarity matrix S
-resSimS <- SimS(gfData, pcRatio, largeThre, NN.method, Dis.method)
+resSimS <- SimS(gfData, pcRatio, largeThre, NN.method = "KNN", Dis.method = "Euclidean")
 
 # Estimate the number of clusters C
 Estimated_C <- EstClusters(resSimS$drData,resSimS$S)
