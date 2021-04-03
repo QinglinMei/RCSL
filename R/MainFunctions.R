@@ -420,6 +420,21 @@ for(i in seq_len(ncol(neigData))){
    return(res)
 }
 
+#' A public scRNA-seq dataset by Yan et al.
+#'
+#' @source \url{http://dx.doi.org/10.1038/nsmb.2660}
+#'
+#' Columns represent cells, rows represent genes expression values.
+#'
+"yan"
+
+#' Cell type annotations of `yan` datasets by Yan et al.
+#'
+#' @source \url{http://dx.doi.org/10.1038/nsmb.2660}
+#'
+#' Each row corresponds to one cell of `yan` dataset
+#'
+"ann"
 
    
    
