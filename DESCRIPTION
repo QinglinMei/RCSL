@@ -15,8 +15,11 @@ LazyData: true
 RoxygenNote: 7.1.1
 biocViews: SingleCell, Software, Clustering, DimensionReduction, 
            RNASeq, Visualization, Sequencing
-Suggests: knitr, rmarkdown, mclust, RcppAnnoy
+Suggests: rmarkdown, mclust, RcppAnnoy
 VignetteBuilder: knitr
 Imports:
-    RcppAnnoy,
-    igraph
+    igraph,
+    NbClust,
+    Rtsne,
+    ggplot2
+    
