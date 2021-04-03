@@ -5,8 +5,12 @@
 #' @param GF should I need the gene filter step?
 #' @param gfRatio the ratio of the gene filter
 #' @param pcRatio the ratio between the variance of the choosed PCs and the total variance
-#' @param neiRatio ratio of the number of selected neighbors to the total number of cells in NR
-#'
+#' @param pcRatio the ratio between the variance of the 
+#’                 choosed PCs and the total variance
+#' @param NN.method the method of finding neighbors
+#' @param Dis.method the distance metric in finding neighbors                    
+#' @param neiRatio ratio of the number of selected 
+#‘                 neighbors to the total number of cells 
 #' @return gfData gene expression matrix after genes filtering
 #' @return B block-diagonal matrix
 #' @return C estimated number of clusters
