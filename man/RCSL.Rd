@@ -15,6 +15,8 @@ RCSL(
 )
 }
 \arguments{
+\item{data}{normalizaed gene expression matrix(each column represents a cell)}
+
 \item{GF}{should I need the gene filter step?}
 
 \item{gfRatio}{the ratio of the gene filter}
@@ -26,8 +28,6 @@ RCSL(
 \item{Dis.method}{the distance metric in finding neighbors}
 
 \item{neiRatio}{ratio of the number of selected}
-
-\item{datat}{normalizaed gene expression matrix(each column represents a cell)}
 }
 \value{
 gfData gene expression matrix after genes filtering

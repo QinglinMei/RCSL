@@ -38,6 +38,6 @@ TrueLabel <- ann$cell_type1
 res_SimS <- SimS(gfData)
 C <- EstClusters(res_SimS$drData,res_SimS$S)
 res_BDSM <- BDSM(res_SimS$S,C)
-PlotMST(res_SimS$drData,res_BDSM$y)
+PlotMST(res_SimS$drData,res_BDSM$y,TrueLabel)
 
 }
