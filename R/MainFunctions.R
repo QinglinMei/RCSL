@@ -42,11 +42,14 @@
 #‘             (each column represents a cell)
 #' @param pcRatio the ratio between the variance of the 
 #’                 choosed PCs and the total variance
-#' @param neiRatio ratio of the number of selected 
-#‘                 neighbors to the total number of cells
 #' @param gamma the ratio of the global simialrity
 #' @param NN.method the method of finding neighbors
 #' @param Dis.method the distance metric in finding neighbors
+#' @param LSH.TreeNum the tree number of LSH
+#' @param LSH.Dim the dimension in LSH
+#' @param LSH.Dis the distance metric in LSH                      
+#' @param neiRatio ratio of the number of selected 
+#‘                 neighbors to the total number of cells                          
 #' @return initial similarity matrix S
 #' @return gene expression matrix after PCA processing drData
 #'
@@ -99,8 +102,13 @@
 #' @import RcppAnnoy
 #'
 #' @param drData gene expression matrix after dimensionality reduced by PCA
-#' @param neiRatio ratio of the number of selected neighbors to the total number of cells
-#' 
+#' @param NN.method the method of finding neighbors
+#' @param Dis.method the distance metric in finding neighbors
+#' @param LSH.TreeNum the tree number of LSH
+#' @param LSH.Dim the dimension in LSH
+#' @param LSH.Dis the distance metric in LSH                      
+#' @param neiRatio ratio of the number of selected 
+#‘                 neighbors to the total number of cells    
 #' @return the similarity matrix measured by neighbor representation NR
 #'
 #' @export
@@ -260,8 +268,8 @@ for(i in seq_len(ncol(neigData))){
 #' 
 #' Solve the problem: min 1/2*x'*L*x-x'*d s.t. x>=0, 1'x=1
 #' 
-#' @param d 
-#' @param l 
+#' @param d matrix or vector
+#' @param l matrix or vector
 #' 
 #' @return x 
 "EProjSimplexdiag" <- function(d,l){
