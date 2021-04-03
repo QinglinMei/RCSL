@@ -5,7 +5,7 @@
 #‘               (each column represent a cell)
 #' @param clustRes the clustering results identified by RCSL
 #' @param TrueLabel the real cell types to color the dots in plot
-#' @param dataName plot title
+#' @param dataName the name of the data that will be showed in the plot
 #' @param fontSize the font size of the plot
 #' @param VisualMethod the method for 2D visualization including UMAP,t-SNE and PCA
 #'
@@ -96,8 +96,10 @@
 #'
 #' @param S the similarity matrix calculated by SimS() function
 #' @param TrueLabel the real cell types used to indicate the vertical axis
-#' @param startPoint the posiition of the starting cell
+#' @param startPoint the posiition of the starting cell in the matrix
 #' @param fontSize the font size of the plot
+#' @param dataName the name of the data that will be showed in the plot
+#' @param sim indicate the input data is simialrity matrix or not
 #'
 #' @return PstudoTime
 #' @return PseudoTimePlot  ggplot object of the pseudo-temporal ordering of cells
@@ -243,7 +245,11 @@
 #'
 #' @param gfData preprocessed gene expression data (each column represent a cell)
 #' @param clustRes the clustering results identified by RCSL
+#' @param TrueLabel the real cell types
 #' @param lineage  the lineage obtained by getLineage()
+#' @param fontSize the size of font in the plot
+#' @param dataName the name of the data that will be showed in the plot
+#' @param VisualMethod the display method of 2-D visualization
 #'
 #' @return TrajectoryPlot ggplot object of the inferred developmental trajectories
 #'
@@ -324,8 +330,15 @@
 #' Trajectory analysis 
 #'
 #' @param gfData preprocessed gene expression data (each column represent a cell)
+#' @param drData preprocessed gene expression data (each column represent a cell)
+#' @param S the similarity matrix calculated by SimS() function
 #' @param clustRes the clustering results identified by RCSL
-#' @param lineage  the lineage obtained by getLineage()
+#' @param fontSize the size of font in the plot
+#' @param TrueLabel the real cell types used to indicate the vertical axis
+#' @param startPoint the posiition of the starting cell in the matrix
+#' @param dataName the name of the data that will be showed in the plot
+#' @param simMeasure the calculation method of measuring the cluster centers' similarity
+#' @param VisualMethod the display method of 2-D visualization
 #'
 #' @return PseudoTimePlot, MSTPlot, TrajectoryPlot
 #'
