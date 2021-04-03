@@ -22,5 +22,8 @@ Imports:
     igraph,
     NbClust,
     Rtsne,
-    ggplot2
+    ggplot2,
+    methods,
+    pracma,
+    umap
     
