@@ -1,7 +1,7 @@
 #'
 #' Perform the RCSL program
 #'
-#' @param datat normalizaed gene expression matrix(each column represents a cell)
+#' @param data normalizaed gene expression matrix(each column represents a cell)
 #' @param GF should I need the gene filter step?
 #' @param gfRatio the ratio of the gene filter
 #' @param pcRatio the ratio between the variance of the choosed PCs and the total variance
