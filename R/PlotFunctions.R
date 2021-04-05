@@ -112,7 +112,7 @@
 #' res_SimS <- SimS(gfData)
 #' C <- EstClusters(res_SimS$drData,res_SimS$S)
 #' res_BDSM <- BDSM(res_SimS$S,C)
-#' PlotPseudoTime(res_SimS$S,res_BDSM$C,staetpoint=1)
+#' PlotPseudoTime(res_SimS$S,res_BDSM$C,startPoint=1)
 #'
 "PlotPseudoTime" <- function(S, TrueLabel, startPoint, fontSize = 12,
                              dataName = "", sim = TRUE){
@@ -337,6 +337,7 @@
 #' @param TrueLabel the real cell types used to indicate the vertical axis
 #' @param startPoint the posiition of the starting cell in the matrix
 #' @param dataName the name of the data that will be showed in the plot
+#' @param sim indicate the input data is simialrity matrix or not
 #' @param simMeasure the calculation method of measuring the cluster centers' similarity
 #' @param VisualMethod the display method of 2-D visualization
 #'
