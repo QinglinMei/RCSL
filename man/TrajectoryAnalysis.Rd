@@ -35,6 +35,8 @@ TrajectoryAnalysis(
 
 \item{dataName}{the name of the data that will be showed in the plot}
 
+\item{sim}{indicate the input data is simialrity matrix or not}
+
 \item{simMeasure}{the calculation method of measuring the cluster centers' similarity}
 
 \item{VisualMethod}{the display method of 2-D visualization}
