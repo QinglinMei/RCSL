@@ -110,9 +110,7 @@
 #' gfData <- GenesFilter(yan)
 #' TrueLabel <- ann$cell_type1
 #' res_SimS <- SimS(gfData)
-#' C <- EstClusters(res_SimS$drData,res_SimS$S)
-#' res_BDSM <- BDSM(res_SimS$S,C)
-#' PlotPseudoTime(res_SimS$S,res_BDSM$C,startPoint=1)
+#' PlotPseudoTime(res_SimS$S,TrueLabel,startPoint=1)
 #'
 "PlotPseudoTime" <- function(S, TrueLabel, startPoint, fontSize = 12,
                              dataName = "", sim = TRUE){
