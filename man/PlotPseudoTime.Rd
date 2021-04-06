@@ -41,4 +41,5 @@ gfData <- GenesFilter(yan)
 TrueLabel <- ann$cell_type1
 res_SimS <- SimS(gfData)
 PlotPseudoTime(res_SimS$S,TrueLabel,startPoint=1)
+
 }
