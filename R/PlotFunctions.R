@@ -173,9 +173,10 @@
 #' res_SimS <- SimS(gfData)
 #' C <- EstClusters(res_SimS$drData,res_SimS$S)
 #' res_BDSM <- BDSM(res_SimS$S,C)
-#' Pseudo <- PlotPseudoTime(res_SimS$S,res_BDSM$C,staetpoint=1)
+#' Pseudo <- PlotPseudoTime(res_SimS$S,TrueLabel,startPoint=1)
 #' getLineage(res_SimS$drData,res_BDSM$y,Pseudo$pseudoTime)
 #'
+
 "getLineage" <- function(drData, clustRes, pseudoTime, simMeasure = "kendall"){
   centers_num <- max(clustRes)
   centers <- matrix(nrow = nrow(drData),ncol = centers_num)
@@ -259,9 +260,11 @@
 #' res_SimS <- SimS(gfData)
 #' C <- EstClusters(res_SimS$drData,res_SimS$S)
 #' res_BDSM <- BDSM(res_SimS$S,C)
+#' Pseudo <- PlotPseudoTime(res_SimS$S,TrueLabel,startPoint=1)
 #' Linea <- getLineage(res_SimS$drData,res_BDSM$y,Pseudo$pseudoTime)
 #' PlotTrajectory(gfData,res_BDSM$y,TrueLabel,lineage=Linea)
 #'
+
 "PlotTrajectory" <- function(gfData, clustRes, TrueLabel, lineage,
                              fontSize = 12, dataName = "", VisualMethod = "umap"){
   if(VisualMethod == "umap"){
