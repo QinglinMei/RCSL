@@ -27,7 +27,7 @@ TrueLabel <- ann$cell_type1
 res_SimS <- SimS(gfData)
 C <- EstClusters(res_SimS$drData,res_SimS$S)
 res_BDSM <- BDSM(res_SimS$S,C)
-Pseudo <- PlotPseudoTime(res_SimS$S,res_BDSM$C,staetpoint=1)
+Pseudo <- PlotPseudoTime(res_SimS$S,TrueLabel,startPoint=1)
 getLineage(res_SimS$drData,res_BDSM$y,Pseudo$pseudoTime)
 
 }
