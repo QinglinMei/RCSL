@@ -8,7 +8,7 @@ output:
 vignette: >
   %\VignetteIndexEntry{RCSL package manual}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
   
 ```{r knitr-options, echo=FALSE, message=FALSE, warning=FALSE, include = FALSE}
