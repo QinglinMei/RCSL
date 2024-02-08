@@ -6,7 +6,7 @@ This package can be insatlled through devtools in R:
 ```{r}
 $ R
 > library("devtools")
-> devtools::install_github("QinglinMei/RCSL")
+> devtools::install_github("QinglinMei/RCSL",,build_vignettes = T)
 ```
 Now RCSL can be loaded in R:
 ```{r}
