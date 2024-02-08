@@ -1,33 +1,22 @@
 Package: RCSL
-Version: 0.99.91
-Date: 2021-04-01
+Type: Package
 Title: Rank Constrained Similarity Learning for single cell RNA sequencing data
-Description: A novel clustering algorithm and toolkit RCSL (Rank Constrained Similarity Learning) to accurately identify various cell types using scRNA-seq data from a complex tissue. RCSL considers both lo-cal similarity and global similarity among the cells to discern the subtle differences among cells of the same type as well as larger differences among cells of different types. RCSL uses Spearman’s rank correlations of a cell’s expression vector with those of other cells to measure its global similar-ity, and adaptively learns neighbour representation of a cell as its local similarity. The overall similar-ity of a cell to other cells is a linear combination of its global similarity and local similarity. 
+Version: 1.22.1
+Date: 2021-04-01
 Authors@R: c(
   person(given = "Qinglin", family = "Mei", email = "meiqinglinkf@163.com", role = c("cre","aut")),
   person(given = "Guojun", family = "Li", email = "guojunsdu@gmail.com", role = "fnd"),
-  person(given = "Zhengchang", family = "Su", email = "zcsu@uncc.edu", role = "fnd")
-  )
+  person(given = "Zhengchang", family = "Su", email = "zcsu@uncc.edu", role = "fnd"))
+Maintainer: Qinglin Mei <meiqinglinkf@163.com>
+Description: A novel clustering algorithm and toolkit RCSL (Rank Constrained Similarity Learning) to accurately identify various cell types using scRNA-seq data from a complex tissue. RCSL considers both lo-cal similarity and global similarity among the cells to discern the subtle differences among cells of the same type as well as larger differences among cells of different types. RCSL uses Spearman’s rank correlations of a cell’s expression vector with those of other cells to measure its global similar-ity, and adaptively learns neighbour representation of a cell as its local similarity. The overall similar-ity of a cell to other cells is a linear combination of its global similarity and local similarity. 
 URL: https://github.com/QinglinMei/RCSL
 Depends: R (>= 4.1)
-License: GPL-3
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.1
+License: Artistic-2.0
+VignetteBuilder: knitr
 biocViews: SingleCell, Software, Clustering, DimensionReduction, 
            RNASeq, Visualization, Sequencing
-Suggests: knitr, rmarkdown, mclust, RcppAnnoy
-VignetteBuilder: knitr
-Imports:
-    RcppAnnoy,
-    igraph,
-    NbClust,
-    Rtsne,
-    ggplot2,
-    methods,
-    pracma,
-    umap,
-    grDevices,
-    graphics,
-    stats
-    
+Suggests: testthat, knitr, BiocStyle, rmarkdown, mclust, tidyverse, tinytex
+Imports: RcppAnnoy, igraph, NbClust, Rtsne, ggplot2(>= 3.4.0), methods, pracma, umap, grDevices, graphics, stats, Rcpp (>= 0.11.0), MatrixGenerics, SingleCellExperiment
+LazyData: TRUE
+Encoding: UTF-8
+RoxygenNote: 7.3.1
