@@ -6,7 +6,7 @@ This package can be insatlled through devtools in R:
 ```{r}
 $ R
 > library("devtools")
-> devtools::install_github("QinglinMei/RCSL")
+> devtools::install_github("QinglinMei/RCSL",build_vignettes = T)
 ```
 Now RCSL can be loaded in R:
 ```{r}
@@ -77,7 +77,7 @@ Display the plot of the inferred developmental trajectory
 ```{r}
 > res_TrajecAnalysis$TrajectoryPlot
 ```
-A vignette in R Notebook format is available [here](https://github.com/QinglinMei/RCSL/blob/master/vignettes/RCSL-vignette.Rmd)
+A vignette in R Notebook format is available [here](https://github.com/QinglinMei/RCSL/blob/master/vignettes/RCSL.Rmd)
 
 ## Required annotations for RCSL
 
