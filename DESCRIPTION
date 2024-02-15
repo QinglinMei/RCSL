@@ -1,7 +1,7 @@
 Package: RCSL
 Type: Package
 Title: Rank Constrained Similarity Learning for single cell RNA sequencing data
-Version: 1.22.1
+Version: 0.99.2
 Date: 2021-04-01
 Authors@R: c(
   person(given = "Qinglin", family = "Mei", email = "meiqinglinkf@163.com", role = c("cre","aut")),
